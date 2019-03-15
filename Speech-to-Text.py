@@ -23,7 +23,7 @@ except ImportError:
 
 # Set up the subscription info for the Speech Service:
 # Replace with your own subscription key and service region (e.g., "westus").
-speech_key, service_region = "", "westus"
+speech_key, service_region = "YOUR_SPEECH_KEY", "westus" 
 fromLanguage = "ru-RU"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
 speech_config.speech_recognition_language = fromLanguage
@@ -171,11 +171,9 @@ def speech_recognition_with_push_stream(stream_url):
     # start continuous speech recognition
     speech_recognizer.start_continuous_recognition_async()
     
-    #stream_url = 'http://cpham.perso.univ-pau.fr/SmartSantanderSample/test.raw'
-    #stream_url = 'http://localhost:80/male1.raw'
     r = requests.get(stream_url, stream = True)
 
-    # start pushing data until all data has been read from the file
+    # start pushing data
     try:
         for block in r.iter_content(n_bytes):
             #print('read {} bytes'.format(len(block)))
